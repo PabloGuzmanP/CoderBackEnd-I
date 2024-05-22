@@ -1,0 +1,14 @@
+{
+  "name": "ejemplo1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+  "start": "node --watch --no-warnings server.js",
+  "stop-linux": "killall -9 node",
+  "stop-windows": "taskkill /F /IM node.exe"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
