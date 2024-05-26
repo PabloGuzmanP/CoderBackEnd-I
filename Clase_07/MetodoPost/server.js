@@ -1,12 +1,14 @@
 import express from "express";
-import usuarios from "./usuarios.js";
+import usuariosData from "./usuarios.js";
 
 const PORT = 8080;
 const HOST = "localhost"; // 127.0.0.1
 const server = express();
 
-server.use(express.urlencoded({extended: true}))
-server.use(express.json())
+server.use(express.urlencoded({extended: true}));
+server.use(express.json());
+
+let usuarios = usuariosData;
 
 server.get("/api/usuarios", (req, res) => {
     // http://localhost:8080/?genero=m&nombre=juan
@@ -43,14 +45,14 @@ server.post("/api/usuarios", (req, res) => {
         return res.status(400).send({"error": "Faltan datos"})
     }
 
-    const usuarioNuevo = {id: Number(id), nombre, apellido, edad, curso, genero};
+    const usuarioNuevo = {id: Number(id), nombre, apellido, edad: Number(edad), curso, genero};
     usuarios.push(usuarioNuevo);
 
     res.status(200).send({data: usuarioNuevo});
 });
 
 server.put("/api/usuario/:id", (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const {nombre, apellido, edad, curso, genero} = req.body;
     const indice = usuarios.findIndex((item) => item.id === Number(id));
 
@@ -62,10 +64,25 @@ server.put("/api/usuario/:id", (req, res) => {
         return res.status(400).send({"error": "Faltan datos"})
     }
 
-    const usuarioModificado = {id: Number(id), nombre, apellido, edad, curso, genero};
+    const usuarioModificado = {id: Number(id), nombre, apellido, edad: Number(edad), curso, genero};
     usuarios[indice] = usuarioModificado
 
     res.status(200).send({data: usuarioModificado});
+});
+
+server.delete("/api/usuario/:id", (req, res) => {
+    let usuarioData = usuarios
+    let id  = req.params.id;
+    let userId = Number(id);
+    let usuario = usuarioData.find((item) => item.id === userId);
+
+    if(!usuario){
+        return res.status(400).send({error: "No se encontro ningun usuario con ese genero"})
+    }
+
+    usuarioData = usuarioData.filter((user) => user.id != userId);
+
+    res.status(200).send({data: usuarioData});
 });
 
 server.listen(PORT, () => { //Maneja errores
