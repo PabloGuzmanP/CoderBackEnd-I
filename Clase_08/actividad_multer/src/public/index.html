@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><Mi-app></Mi-app></title>
+</head>
+<body>
+    <h1>Mascotas</h1>
+
+    <form action="/api/pets", method="post" enctype="multipart/form-data">
+        <div>
+            <label for="name">Nombre</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label for="specie">Especie</label>
+            <input type="text" name="specie" id="specie">
+        </div>
+        <div>
+            <label for="file">Imagen</label>
+            <input type="file" name="file" id="file">
+        </div>
+
+        <input type="submit", value="Guardar">
+    </form>
+</body>
+</html>
