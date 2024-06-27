@@ -1,0 +1,24 @@
+{
+    "name": "clase_14",
+    "version": "1.0.0",
+    "description": "Servidor de Node JS + Express + MongoDB + ODM Mongoose",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node --watch --no-warnings src/server.js",
+        "stop-windows": "taskkill /F /IM node.exe",
+        "stop-linux": "killall -9 node",
+        "lint": "eslint ./src --fix"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.19.2",
+        "mongodb": "^6.7.0",
+        "mongoose": "^8.4.3"
+    },
+    "devDependencies": {
+        "eslint": "^8.57.0"
+    }
+}
